@@ -10,10 +10,10 @@ class MatchController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max, Round round) {
+    def index(Integer max, Integer roundId) {
         params.max = Math.min(max ?: 10, 100)
-        params.round = round;
-        respond Match.list(params), model:[matchInstanceCount: Match.count()]
+        params.round = Round.findById(roundId)
+        return [matchInstanceList: Match.list(params), matchInstanceCount: Match.count(), roundX: params.round]
     }
 
     def results (){
