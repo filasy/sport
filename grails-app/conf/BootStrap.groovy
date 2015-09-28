@@ -75,10 +75,10 @@ class BootStrap {
     }
 
     void createMatch(){
-        def match = new Match(startDate: new Date(2015,07,17,19,0), round:  Round.findByRoundNumber(1),
+        def match = new Match(startDate: new Date(2015,07,17,19,0,0), round:  Round.findByRoundNumber(1),
                 firstTeam:  Team.findByName("Спартак"), secondTeam:  Team.findByName("Уфа"),
                 score: Score.findByFirstTeamAndSecondTeam(2,2)).save()
-        match = new Match(startDate: new Date(2015,07,18,18,30), round:  Round.findByRoundNumber(1),
+        match = new Match(startDate: new Date(2015,07,18,18,30,0), round:  Round.findByRoundNumber(1),
                 firstTeam:  Team.findByName("ЦСКА"), secondTeam:  Team.findByName("Рубин"),
                 score: Score.findByFirstTeamAndSecondTeam(1,0)).save()
 

@@ -14,4 +14,8 @@ class DateTagLib {
         def pattern = attrs["format"] ?: "EEEE, MMM d, yyyy"
         out << new SimpleDateFormat(pattern).format(d)
     }
+
+    def thisYear = {
+        out << Calendar.getInstance().get(Calendar.YEAR)
+    }
 }

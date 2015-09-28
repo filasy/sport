@@ -10,6 +10,6 @@ class Round {
     }
 
     String toString(){
-        "Òσπ " + roundNumber
+        "ΠΆΡƒΡ€ " + roundNumber
     }
 }
