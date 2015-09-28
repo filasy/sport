@@ -18,13 +18,13 @@
 	</head>
 	<body>
     <!--	<div id="grailsLogo" role="banner"><a href="http://grails.org"><asset:image src="grails_logo.png" alt="РФПЛ"/></a></div>-->
+
     <div id="spinner" class="spinner" style="display:none;">
         <img src="${createLinkTo(dir:'images',file:'spinner.gif')}"
              alt="Spinner" />
     </div>
     <div id="header">
-        <p><g:link class="header-main" controller="Team">
-            РФПЛ</g:link></p>
+        <p><g:link class="header-main" controller="Team"> РФПЛ</g:link></p>
         <p class="header-sub">Российская футбольная премьер лига</p>
     </div>
 		<g:layoutBody/>

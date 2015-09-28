@@ -16,7 +16,7 @@ class Match {
     }
 
     static mapping = {
-        sort "startDate":"desc"
+        sort "startDate":"asc"
     }
 
     @Override
