@@ -10,6 +10,6 @@ class Round {
     }
 
     String toString(){
-        roundNumber
+        "“ур " + roundNumber
     }
 }

@@ -14,4 +14,13 @@ class Match {
         secondTeam nullable: false
         score nullable: true
     }
+
+    static mapping = {
+        sort "startDate":"desc"
+    }
+
+    @Override
+    String toString() {
+        firstTeam.toString() + " - " + secondTeam.toString() + "(" + round.toString() + ")"
+    }
 }

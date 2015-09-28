@@ -15,6 +15,7 @@ class BootStrap {
         createScore()
         createMatch()
     }
+
     def destroy = {
     }
 
@@ -68,8 +69,9 @@ class BootStrap {
     }
 
     void createScore(){
-        def score1 = new Score(firstTeam: 2, secondTeam: 2).save()
-        def score2 = new Score(firstTeam: 1, secondTeam: 0).save()
+        def score = new Score(firstTeam: 2, secondTeam: 2).save()
+        score = new Score(firstTeam: 1, secondTeam: 0).save()
+        assert Score.count() == 2
     }
 
     void createMatch(){
@@ -79,6 +81,8 @@ class BootStrap {
         match = new Match(startDate: new Date(2015,07,18,18,30), round:  Round.findByRoundNumber(1),
                 firstTeam:  Team.findByName("ЦСКА"), secondTeam:  Team.findByName("Рубин"),
                 score: Score.findByFirstTeamAndSecondTeam(1,0)).save()
+
+        assert Match.count() == 2
     }
 
 
