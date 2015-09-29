@@ -24,7 +24,7 @@
              alt="Spinner" />
     </div>
     <div id="header">
-        <p><g:link class="header-main" controller="Team"> РФПЛ</g:link></p>
+        <p><g:link class="header-main" uri='/'> РФПЛ</g:link></p>
         <p class="header-sub">Российская футбольная премьер лига</p>
     </div>
 		<g:layoutBody/>
