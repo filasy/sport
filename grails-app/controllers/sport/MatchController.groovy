@@ -10,10 +10,18 @@ class MatchController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max, Integer roundId) {
+    def index(Integer max, Integer roundID) {
         params.max = Math.min(max ?: 10, 100)
-        params.round = Round.findById(roundId)
-        return [matchInstanceList: Match.list(params), matchInstanceCount: Match.count(), roundX: params.round]
+        params.round = Round.findById(roundID)
+        def list, count
+        if (params.round){
+            list = Match.findAllByRound(params.round)
+            count = list.size()
+        } else {
+            list = Match.list(params)
+            count = Match.count()
+        }
+        return [matchInstanceList: list, matchInstanceCount: count, round: params.round]
     }
 
     def results (){

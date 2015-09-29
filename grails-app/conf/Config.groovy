@@ -116,6 +116,9 @@ log4j.main = {
            'net.sf.ehcache.hibernate'
 }
 
+grails.databinding.dateFormats = [
+        'MMddyyyy', 'yyyy-MM-dd HH:mm', 'dd:MM:yyyy HH:mm'
+]
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'sport.secure.User'

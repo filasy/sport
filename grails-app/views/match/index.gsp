@@ -12,27 +12,21 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				<sec:ifAllGranted roles="ROLE_ADMIN">
+					<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
+				</sec:ifAllGranted>
 			</ul>
 		</div>
 		<div id="list-match" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
-
-			${roundX} <br>
-			${matchInstanceCount}<br>
-
-			<formset>
-				<g:form action="index">
-					<label for="roundId">
-						<g:message code="match.round.label" default="Round" />
-					</label>
-					<g:select name="roundId"
-							  from="${sport.Round.list()}"
-							  optionKey="id"
-							  value="${roundX.id}"/>
-					<g:submitButton name="search" value="Search"/>
-				</g:form>
-			</formset>
+			<g:form action="index" class="message">
+				<g:select name="roundID"
+						  from="${sport.Round.list()}"
+						  optionKey="id"
+						  noSelection="['':'-Все туры-']"
+						  value="${round?.id}"
+				/>
+				<g:submitButton name="search" value="Поиск"/>
+			</g:form>
 
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
