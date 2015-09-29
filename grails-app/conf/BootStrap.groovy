@@ -1,19 +1,22 @@
-import jdk.nashorn.internal.runtime.Scope
-import sport.Match
-import sport.Rank
-import sport.Round
-import sport.Score
-import sport.Team
+import sport.*
 import sport.secure.*
 
 class BootStrap {
 
     def init = { servletContext ->
-        createUserRole()
-        createTeam()
-        createRankAndRound()
-        createScore()
-        createMatch()
+        environments {
+            production {}
+
+            development {
+                createUserRole()
+                createTeam()
+                createRankAndRound()
+               // createScore()
+                createMatch()
+            }
+
+            test {}
+        }
     }
 
     def destroy = {
@@ -70,88 +73,94 @@ class BootStrap {
     }
 
     void createScore(){
-        def score = new Score(firstTeam: 0, secondTeam: 0).save()
-        score = new Score(firstTeam: 0, secondTeam: 1).save()
-        score = new Score(firstTeam: 0, secondTeam: 2).save()
-        score = new Score(firstTeam: 1, secondTeam: 0).save()
-        score = new Score(firstTeam: 1, secondTeam: 1).save()
-        score = new Score(firstTeam: 1, secondTeam: 2).save()
-        score = new Score(firstTeam: 2, secondTeam: 0).save()
-        score = new Score(firstTeam: 2, secondTeam: 1).save()
-        score = new Score(firstTeam: 2, secondTeam: 2).save()
-        score = new Score(firstTeam: 3, secondTeam: 0).save()
-        score = new Score(firstTeam: 3, secondTeam: 1).save()
-        score = new Score(firstTeam: 3, secondTeam: 2).save()
-        score = new Score(firstTeam: 3, secondTeam: 3).save()
+        def score = Score.findOrSaveByFirstTeamAndSecondTeam(0,0)
+        score = Score.findOrSaveByFirstTeamAndSecondTeam(0,1)
+        score = Score.findOrSaveByFirstTeamAndSecondTeam(0,2)
+        score = Score.findOrSaveByFirstTeamAndSecondTeam(1,1)
+        score = Score.findOrSaveByFirstTeamAndSecondTeam(1,2)
+        score = Score.findOrSaveByFirstTeamAndSecondTeam(1,3)
+        score = Score.findOrSaveByFirstTeamAndSecondTeam(2,0)
+        score = Score.findOrSaveByFirstTeamAndSecondTeam(2,1)
+        score = Score.findOrSaveByFirstTeamAndSecondTeam(2,2)
+        score = Score.findOrSaveByFirstTeamAndSecondTeam(3,0)
+        score = Score.findOrSaveByFirstTeamAndSecondTeam(3,1)
+        score = Score.findOrSaveByFirstTeamAndSecondTeam(3,2)
+        score = Score.findOrSaveByFirstTeamAndSecondTeam(3,3)
+        score = Score.findOrSaveByFirstTeamAndSecondTeam(4,1)
 
-        assert Score.count() == 13
+        assert Score.count() == 14
     }
 
     void createMatch(){
         //Тур1
         def match = new Match(startDate: new Date(2015,7,17,19,0), round:  Round.findByRoundNumber(1),
                 firstTeam:  Team.findByName("Спартак"), secondTeam:  Team.findByName("Уфа"),
-                score: Score.findByFirstTeamAndSecondTeam(2,2)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(2,2)).save()
         match = new Match(startDate: new Date(2015,7,18,18,30), round:  Round.findByRoundNumber(1),
                 firstTeam:  Team.findByName("ЦСКА"), secondTeam:  Team.findByName("Рубин"),
-                score: Score.findByFirstTeamAndSecondTeam(1,0)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(1,0)).save()
         match = new Match(startDate: new Date(2015,7,18,21,0), round:  Round.findByRoundNumber(1),
                 firstTeam:  Team.findByName("Ростов"), secondTeam:  Team.findByName("Терек"),
-                score: Score.findByFirstTeamAndSecondTeam(1,1)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(1,1)).save()
         match = new Match(startDate: new Date(2015,7,19,13,30), round:  Round.findByRoundNumber(1),
                 firstTeam:  Team.findByName("Зенит"), secondTeam:  Team.findByName("Динамо"),
-                score: Score.findByFirstTeamAndSecondTeam(2,1)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(2,1)).save()
         match = new Match(startDate: new Date(2015,7,19,18,0), round:  Round.findByRoundNumber(1),
                 firstTeam:  Team.findByName("Мордовия"), secondTeam:  Team.findByName("Локомотив"),
-                score: Score.findByFirstTeamAndSecondTeam(0,1)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(0,1)).save()
         match = new Match(startDate: new Date(2015,7,19,21,0), round:  Round.findByRoundNumber(1),
                 firstTeam:  Team.findByName("Анжи"), secondTeam:  Team.findByName("Крылья Советов"),
-                score: Score.findByFirstTeamAndSecondTeam(0,1)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(0,1)).save()
         match = new Match(startDate: new Date(2015,7,20,17,0), round:  Round.findByRoundNumber(1),
                 firstTeam:  Team.findByName("Амкар"), secondTeam:  Team.findByName("Краснодар"),
-                score: Score.findByFirstTeamAndSecondTeam(0,1)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(0,1)).save()
         match = new Match(startDate: new Date(2015,7,20,20,0), round:  Round.findByRoundNumber(1),
                 firstTeam:  Team.findByName("Кубань"), secondTeam:  Team.findByName("Урал"),
-                score: Score.findByFirstTeamAndSecondTeam(0,2)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(0,2)).save()
 
         //Тур2
         match = new Match(startDate: new Date(2015,7,24,19,0), round:  Round.findByRoundNumber(2),
                 firstTeam:  Team.findByName("Крылья Советов"), secondTeam:  Team.findByName("ЦСКА"),
-                score: Score.findByFirstTeamAndSecondTeam(0,2)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(0,2)).save()
         //Тур3
         match = new Match(startDate: new Date(2015,7,31,20,0), round:  Round.findByRoundNumber(3),
                 firstTeam:  Team.findByName("Кубань"), secondTeam:  Team.findByName("Уфа"),
-                score: Score.findByFirstTeamAndSecondTeam(1,1)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(1,1)).save()
         //Тур4
         match = new Match(startDate: new Date(2015,8,7,18,0), round:  Round.findByRoundNumber(4),
                 firstTeam:  Team.findByName("Терек"), secondTeam:  Team.findByName("Мордовия"),
-                score: Score.findByFirstTeamAndSecondTeam(0,0)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(0,0)).save()
         //Тур5
         match = new Match(startDate: new Date(2015,8,14,17,0), round:  Round.findByRoundNumber(5),
                 firstTeam:  Team.findByName("Амкар"), secondTeam:  Team.findByName("Анжи"),
-                score: Score.findByFirstTeamAndSecondTeam(1,1)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(1,1)).save()
         //Тур6
         match = new Match(startDate: new Date(2015,8,21,20,0), round:  Round.findByRoundNumber(6),
                 firstTeam:  Team.findByName("Терек"), secondTeam:  Team.findByName("Динамо"),
-                score: Score.findByFirstTeamAndSecondTeam(1,1)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(1,1)).save()
         //Тур7
         match = new Match(startDate: new Date(2015,8,28,17,0), round:  Round.findByRoundNumber(7),
                 firstTeam:  Team.findByName("Урал"), secondTeam:  Team.findByName("Терек"),
-                score: Score.findByFirstTeamAndSecondTeam(3,3)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(3,3)).save()
         //Тур8
         match = new Match(startDate: new Date(2015,9,12,17,0), round:  Round.findByRoundNumber(8),
                 firstTeam:  Team.findByName("Амкар"), secondTeam:  Team.findByName("Кубань"),
-                score: Score.findByFirstTeamAndSecondTeam(1,1)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(1,1)).save()
         //Тур9
         match = new Match(startDate: new Date(2015,9,18,19,0), round:  Round.findByRoundNumber(9),
                 firstTeam:  Team.findByName("Ростов"), secondTeam:  Team.findByName("Анжи"),
-                score: Score.findByFirstTeamAndSecondTeam(1,0)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(1,0)).save()
+        match = new Match(startDate: new Date(2015,9,19,16,0), round:  Round.findByRoundNumber(9),
+                firstTeam:  Team.findByName("Терек"), secondTeam:  Team.findByName("Уфа"),
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(4,1)).save()
         //Ту10
-        match = new Match(startDate: new Date(2015,9,26,19,0), round:  Round.findByRoundNumber(10),
+        match = new Match(startDate: new Date(2015,9,26,14,0), round:  Round.findByRoundNumber(10),
                 firstTeam:  Team.findByName("ЦСКА"), secondTeam:  Team.findByName("Локомотив"),
-                score: Score.findByFirstTeamAndSecondTeam(1,1)).save()
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(1,1)).save()
+        match = new Match(startDate: new Date(2015,9,26,16,30), round:  Round.findByRoundNumber(10),
+                firstTeam:  Team.findByName("Анжи"), secondTeam:  Team.findByName("Уфа"),
+                score: Score.findOrSaveByFirstTeamAndSecondTeam(1,1)).save()
 
-        assert Match.count() == 17
     }
 
 

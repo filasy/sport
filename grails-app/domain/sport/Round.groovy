@@ -10,6 +10,7 @@ class Round {
         roundNumber nullable: false, blank: false
     }
 
+    @Override
     String toString(){
         "Тур " + roundNumber
     }

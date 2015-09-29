@@ -15,17 +15,13 @@ class MatchController {
         params.round = Round.findById(roundID)
         def list, count
         if (params.round){
-            list = Match.findAllByRound(params.round)
+            list = Match.findAllByRound(params.round,[max: params.max, offset: params.offset])
             count = list.size()
         } else {
             list = Match.list(params)
             count = Match.count()
         }
         return [matchInstanceList: list, matchInstanceCount: count, round: params.round]
-    }
-
-    def results (){
-        return [matchInstanceList: Match.findAllByRound(Round.findById(params.roundId))]
     }
 
     def show(Match matchInstance) {

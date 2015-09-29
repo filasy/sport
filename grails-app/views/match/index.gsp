@@ -27,7 +27,6 @@
 				/>
 				<g:submitButton name="search" value="Поиск"/>
 			</g:form>
-
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -49,9 +48,8 @@
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 						<td>${fieldValue(bean: matchInstance, field: "round")}</td>
 
-						<td><g:link action="show" id="${matchInstance.id}">${fieldValue(bean: matchInstance, field: "startDate")}</g:link></td>
-
-						<td>${fieldValue(bean: matchInstance, field: "firstTeam")} - ${fieldValue(bean: matchInstance, field: "secondTeam")}</td>
+						<td>${fieldValue(bean: matchInstance, field: "startDate")}</td>
+						<td><g:link action="show" id="${matchInstance.id}"> ${fieldValue(bean: matchInstance, field: "firstTeam")} - ${fieldValue(bean: matchInstance, field: "secondTeam")} </g:link></td>
 
 						<td>${fieldValue(bean: matchInstance, field: "score")}</td>
 

@@ -7,6 +7,7 @@ class Rank {
         name blank: false, unique: true
     }
 
+    @Override
     String toString(){
         name
     }
