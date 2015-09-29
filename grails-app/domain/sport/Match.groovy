@@ -10,6 +10,8 @@ class Match {
     Team secondTeam
     Score score
 
+    static hasMany = [forecasts: Forecast]
+
     static constraints = {
         startDate nullable: false
         round nullable: false

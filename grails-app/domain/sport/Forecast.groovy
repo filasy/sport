@@ -4,14 +4,22 @@ import sport.secure.User
 
 class Forecast {
     User user
-    Match match
     Score score
     Date dateCreated
     Date lastUpdated
+    boolean enabled = true
+
+
+    static belongsTo = [match: Match]
 
     static constraints = {
         user nullable: false
         match nullable: false
-        score nullable: true
+        score nullable: false
+    }
+
+    @Override
+    String toString() {
+        return score.toString()
     }
 }
