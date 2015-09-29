@@ -25,7 +25,7 @@
 						  noSelection="['':'-Все туры-']"
 						  value="${round?.id}"
 				/>
-				<g:submitButton name="search" value="Поиск"/>
+				<g:submitButton name="search" value="Применить"/>
 			</g:form>
 			<g:if test="${flash.message}">
 				<div class="message" role="status">${flash.message}</div>
@@ -41,6 +41,8 @@
 					<th><g:message code="match.firstTeam.label" default="Матч" /></th>
 
 					<th><g:message code="match.score.label" default="Факт" /></th>
+
+					<th><g:message code="match.score.create" default="Прогноз" /></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -52,6 +54,16 @@
 						<td><g:link action="show" id="${matchInstance.id}"> ${fieldValue(bean: matchInstance, field: "firstTeam")} - ${fieldValue(bean: matchInstance, field: "secondTeam")} </g:link></td>
 
 						<td>${fieldValue(bean: matchInstance, field: "score")}</td>
+						<g:set var="forecast" value="${matchInstance.forecasts.findAll {it.user == user}}"/>
+
+						<g:if test="${forecast}">
+
+							<td><g:link controller="forecast" action="edit" id="${forecast.id}"> ${forecast}</g:link> </td>
+						</g:if>
+						<g:else >
+							<td><g:link controller="forecast" action="create">Сделать</g:link> </td>
+						</g:else>
+
 
 					</tr>
 				</g:each>
