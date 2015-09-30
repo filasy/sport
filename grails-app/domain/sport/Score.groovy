@@ -23,4 +23,16 @@ class Score implements Comparable <Score> {
             return secondTeam.compareTo(obj.secondTeam)
         }
     }
+
+    int getBall(Score score) {
+        if (firstTeam == score.firstTeam && secondTeam == score.secondTeam) {
+            return 3
+        } else if ((firstTeam-secondTeam) == (score.firstTeam - score.secondTeam)){
+            return 2
+        } else if (((firstTeam-secondTeam) > 0) && ((score.firstTeam - score.secondTeam) > 0)
+                    || ((firstTeam-secondTeam) < 0) && ((score.firstTeam - score.secondTeam) < 0)){
+            return 1
+        }
+        return 0
+    }
 }

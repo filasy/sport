@@ -12,9 +12,7 @@
 		<div class="nav" role="navigation">
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<sec:ifAllGranted roles="ROLE_ADMIN">
 					<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-				</sec:ifAllGranted>
 			</ul>
 		</div>
 		<div id="list-match" class="content scaffold-list" role="main">
@@ -42,7 +40,9 @@
 
 					<th><g:message code="match.score.label" default="Факт" /></th>
 
-					<th><g:message code="match.score.create" default="Прогноз" /></th>
+					<th><g:message code="match.forecast" default="Прогноз" /></th>
+
+					<th><g:message code="match.ball" default="Прогноз" /></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -66,6 +66,9 @@
 							<g:else>
 								<g:link controller="forecast" action="create" params="[matchID: matchInstance.id]">Сделать</g:link>
 							</g:else>
+						</td>
+						<td>
+							${forecast?.getBall()}
 						</td>
 					</tr>
 				</g:each>

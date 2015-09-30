@@ -22,4 +22,8 @@ class Forecast {
     String toString() {
         return score.toString()
     }
+
+    int getBall() {
+        return score.getBall(match.score)
+    }
 }
