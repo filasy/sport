@@ -38,7 +38,7 @@
 
 					<g:sortableColumn property="startDate" title="${message(code: 'match.startDate.label', default: 'Дата')}" />
 
-					<th><g:message code="match.firstTeam.label" default="Матч" /></th>
+					<th><g:message code="match.label" default="Матч" /></th>
 
 					<th><g:message code="match.score.label" default="Факт" /></th>
 
@@ -51,20 +51,19 @@
 						<td>${fieldValue(bean: matchInstance, field: "round")}</td>
 
 						<td>${fieldValue(bean: matchInstance, field: "startDate")}</td>
+
 						<td><g:link action="show" id="${matchInstance.id}"> ${fieldValue(bean: matchInstance, field: "firstTeam")} - ${fieldValue(bean: matchInstance, field: "secondTeam")} </g:link></td>
 
 						<td>${fieldValue(bean: matchInstance, field: "score")}</td>
-						<g:set var="forecast" value="${matchInstance.forecasts.findAll {it.user == user}}"/>
-
-						<g:if test="${forecast}">
-
-							<td><g:link controller="forecast" action="edit" id="${forecast.id}"> ${forecast}</g:link> </td>
-						</g:if>
-						<g:else >
-							<td><g:link controller="forecast" action="create">Сделать</g:link> </td>
-						</g:else>
-
-
+						<td>
+							<g:set var="forecast" value="${matchInstance.forecasts.findAll {it.user == user}}"/>
+							<g:if test="${forecast}">
+								<g:link controller="forecast" action="edit" id="${forecast.id}"> ${forecast[0]}</g:link>
+							</g:if>
+							<g:else >
+								<g:link controller="forecast" action="create">Сделать</g:link>
+							</g:else>
+						</td>
 					</tr>
 				</g:each>
 				</tbody>

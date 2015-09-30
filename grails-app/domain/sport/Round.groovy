@@ -10,6 +10,10 @@ class Round {
         roundNumber nullable: false, blank: false
     }
 
+    static mapping = {
+        sort "roundNumber":"desc"
+    }
+
     @Override
     String toString(){
         "Тур " + roundNumber

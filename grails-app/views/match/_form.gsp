@@ -7,7 +7,7 @@
 		<g:message code="match.startDate.label" default="Start Date" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:datePicker name="startDate" precision="day"  value="${matchInstance?.startDate}"  />
+	<g:datePicker name="startDate" precision="minute"  value="${matchInstance?.startDate}"  />
 
 </div>
 

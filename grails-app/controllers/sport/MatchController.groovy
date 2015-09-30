@@ -1,12 +1,10 @@
 package sport
 
-import grails.plugin.springsecurity.annotation.Secured
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
 @Transactional(readOnly = true)
-@Secured(['ROLE_ADMIN','ROLE_USER'])
+
 class MatchController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]

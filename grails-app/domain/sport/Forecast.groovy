@@ -7,7 +7,7 @@ class Forecast {
     Score score
     Date dateCreated
     Date lastUpdated
-    boolean enabled = true
+    boolean locked = false
 
 
     static belongsTo = [match: Match]
@@ -16,6 +16,7 @@ class Forecast {
         user nullable: false
         match nullable: false
         score nullable: false
+        match unique: ('user')
     }
 
     @Override

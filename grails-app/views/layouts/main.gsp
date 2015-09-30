@@ -28,7 +28,11 @@
         <p class="header-sub">Российская футбольная премьер лига</p>
     </div>
 		<g:layoutBody/>
-		<div class="footer" role="contentinfo"></div>
+	<div class="footer" role="contentinfo">
+		<sec:ifLoggedIn>
+			<g:link controller="logout" action="index">Выход</g:link>
+		</sec:ifLoggedIn>
+	</div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>
 	</body>
 </html>

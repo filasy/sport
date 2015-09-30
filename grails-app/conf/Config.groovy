@@ -124,6 +124,7 @@ grails.databinding.dateFormats = [
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'sport.secure.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'sport.secure.UserRole'
 grails.plugin.springsecurity.authority.className = 'sport.secure.Role'
+grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                ['permitAll'],
 	'/index':           ['permitAll'],
@@ -133,6 +134,17 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/css/**':       ['permitAll'],
 	'/**/images/**':    ['permitAll'],
 	'/**/favicon.ico':  ['permitAll'],
+
+    '/login/**':        ['IS_AUTHENTICATED_ANONYMOUSLY'],
+    '/logout/**':       ['IS_AUTHENTICATED_ANONYMOUSLY'],
+    '/match/index':     ['ROLE_ADMIN','ROLE_USER'],
+    '/match/create/**': ['ROLE_ADMIN'],
+    '/match/save/**':   ['ROLE_ADMIN'],
+    '/match/edit/**':   ['ROLE_ADMIN'],
+    '/match/update/**': ['ROLE_ADMIN'],
+    '/match/delete/**': ['ROLE_ADMIN'],
+    '/match/show/**':   ['ROLE_ADMIN','ROLE_USER'],
+    '/forecast/**':     ['ROLE_ADMIN','ROLE_USER'],
     //'/**':  ['permitAll']
 ]
 

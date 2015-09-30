@@ -15,17 +15,17 @@ class Match {
     static constraints = {
         startDate nullable: false
         round nullable: false
-        firstTeam nullable: false
-        secondTeam nullable: false
+        firstTeam nullable: false, unique: ('secondTeam')
+        secondTeam nullable: false, unique: ('firstTeam')
         score nullable: true
     }
 
     static mapping = {
-        sort "startDate":"asc"
+        sort "startDate":"desc"
     }
 
     @Override
     String toString() {
-        firstTeam.toString() + " - " + secondTeam.toString() + "(" + round.toString() + ")"
+        firstTeam.toString() + " - " + secondTeam.toString() + " (" + round.toString() + ")"
     }
 }

@@ -13,6 +13,7 @@ class BootStrap {
                 createRankAndRound()
                // createScore()
                 createMatch()
+                createForecast()
             }
 
             test {}
@@ -161,6 +162,13 @@ class BootStrap {
                 firstTeam:  Team.findByName("Анжи"), secondTeam:  Team.findByName("Уфа"),
                 score: Score.findOrSaveByFirstTeamAndSecondTeam(1,1)).save()
 
+    }
+
+    def createForecast(){
+        def forecast = new Forecast(user: User.findByUsername('pirogov'),
+                                    match: Match.findByFirstTeamAndSecondTeam(Team.findByName('Анжи'), Team.findByName("Уфа")),
+                                    score: Score.findByFirstTeamAndSecondTeam(1,1)).save()
+        assert Forecast.count() == 1
     }
 
 
