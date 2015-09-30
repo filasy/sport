@@ -11,8 +11,6 @@ class MatchController {
     def springSecurityService
 
     def index(Integer max, Integer roundID) {
-
-        def user = springSecurityService.currentUser
         params.max = Math.min(max ?: 10, 100)
         params.round = Round.findById(roundID)
         def list, count
@@ -23,7 +21,12 @@ class MatchController {
             list = Match.list(params)
             count = Match.count()
         }
-        return [matchInstanceList: list, matchInstanceCount: count, round: params.round, user: user]
+        return [matchInstanceList: list, matchInstanceCount: count, round: params.round, user: springSecurityService.currentUser]
+    }
+
+    def showResults(Integer max){
+        params.max = Math.min(max ?: 10, 100)
+        return [matchInstanceList: Match.list(params), matchInstanceCount: Match.count()]
     }
 
     def show(Match matchInstance) {
@@ -112,4 +115,5 @@ class MatchController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
 }

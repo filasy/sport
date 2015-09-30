@@ -143,6 +143,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
     '/match/edit/**':   ['ROLE_ADMIN'],
     '/match/update/**': ['ROLE_ADMIN'],
     '/match/delete/**': ['ROLE_ADMIN'],
+    '/match/showResults': ['ROLE_ADMIN','ROLE_USER'],
     '/match/show/**':   ['ROLE_ADMIN','ROLE_USER'],
     '/forecast/**':     ['ROLE_ADMIN','ROLE_USER'],
     //'/**':  ['permitAll']

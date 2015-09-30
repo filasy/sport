@@ -24,8 +24,10 @@ class Score implements Comparable <Score> {
         }
     }
 
-    int getBall(Score score) {
-        if (firstTeam == score.firstTeam && secondTeam == score.secondTeam) {
+    def getBall(Score score) {
+        if (!score || !this) {
+            return 0
+        } else if (firstTeam == score.firstTeam && secondTeam == score.secondTeam) {
             return 3
         } else if ((firstTeam-secondTeam) == (score.firstTeam - score.secondTeam)){
             return 2

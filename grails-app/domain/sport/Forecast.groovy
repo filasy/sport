@@ -7,6 +7,7 @@ class Forecast {
     Score score
     Date dateCreated
     Date lastUpdated
+    boolean locked = false
 
 
     static belongsTo = [match: Match]
@@ -23,7 +24,7 @@ class Forecast {
         return score.toString()
     }
 
-    int getBall() {
-        return score.getBall(match.score)
+    def getBall() {
+        return  score.getBall(match?.score)?: 0
     }
 }

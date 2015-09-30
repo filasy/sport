@@ -42,7 +42,14 @@
 
 					<th><g:message code="match.forecast" default="Прогноз" /></th>
 
-					<th><g:message code="match.ball" default="Прогноз" /></th>
+					<th><g:message code="match.ball" default="Балл" />
+					<g:if test="${round}">
+						(${round?.getBallForUser(user)})
+					</g:if>
+					<g:else>
+						(${user?.getBall()})
+					</g:else>
+					</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -68,7 +75,12 @@
 							</g:else>
 						</td>
 						<td>
-							${forecast?.getBall()}
+							<g:if test="${forecast}">
+								${forecast?.getBall()}
+							</g:if>
+							<g:else>
+								0
+							</g:else>
 						</td>
 					</tr>
 				</g:each>

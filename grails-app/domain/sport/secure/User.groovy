@@ -1,5 +1,7 @@
 package sport.secure
 
+import sport.Forecast
+
 class User implements Serializable {
 
 	private static final long serialVersionUID = 1
@@ -8,15 +10,18 @@ class User implements Serializable {
 
 	String username
 	String password
+	String name
 	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
+	boolean activityChamp = true
 
-	User(String username, String password) {
+	User(String username, String password, String name) {
 		this()
 		this.username = username
 		this.password = password
+		this.name = name
 	}
 
 	@Override
@@ -61,5 +66,14 @@ class User implements Serializable {
 
 	static mapping = {
 		password column: '`password`'
+	}
+
+	int getBall(){
+		def result = 0
+		Forecast.findAllByUser(this).each {
+			result += it.getBall()?: 0
+		}
+		return result
+
 	}
 }

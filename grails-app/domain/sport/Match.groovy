@@ -1,6 +1,7 @@
 package sport
 
 import org.grails.databinding.BindingFormat
+import sport.secure.User
 
 class Match {
     @BindingFormat('dd:MM:yyyy HH:mm')
@@ -22,10 +23,15 @@ class Match {
 
     static mapping = {
         sort "startDate":"desc"
+//        sort "forecasts": "asc"
     }
 
     @Override
     String toString() {
         firstTeam.toString() + " - " + secondTeam.toString() + " (" + round.toString() + ")"
+    }
+
+    int getBallForUser(User user){
+        return forecasts.find { it.user == user }.getBall()?:0
     }
 }
