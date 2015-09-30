@@ -38,7 +38,6 @@ class BootStrap {
     void createTeam(){
         def team = new Team(name: "Амкар").save()
         team = new Team(name: "Анжи").save()
-        team = new Team(name: "Арсенал").save()
         team = new Team(name: "Динамо").save()
         team = new Team(name: "Зенит").save()
         team = new Team(name: "Краснодар").save()
@@ -54,23 +53,24 @@ class BootStrap {
         team = new Team(name: "Уфа").save()
         team = new Team(name: "ЦСКА").save()
 
-        assert Team.count() == 17
+        assert Team.count() == 16
     }
 
     void createRankAndRound(){
         def rank = new Rank(name: "РФПЛ 2015-2016").save()
-        def round1 = new Round(rank: rank, roundNumber:1).save();
-        def round2 = new Round(rank: rank, roundNumber:2).save();
-        def round3 = new Round(rank: rank, roundNumber:3).save();
-        def round4 = new Round(rank: rank, roundNumber:4).save();
-        def round5 = new Round(rank: rank, roundNumber:5).save();
-        def round6 = new Round(rank: rank, roundNumber:6).save();
-        def round7 = new Round(rank: rank, roundNumber:7).save();
-        def round8 = new Round(rank: rank, roundNumber:8).save();
-        def round9 = new Round(rank: rank, roundNumber:9).save();
-        def round10 = new Round(rank: rank, roundNumber:10).save();
+        def round = new Round(rank: rank, roundNumber:1, locked: true).save();
+        round = new Round(rank: rank, roundNumber:2, locked: true).save();
+        round = new Round(rank: rank, roundNumber:3, locked: true).save();
+        round = new Round(rank: rank, roundNumber:4, locked: true).save();
+        round = new Round(rank: rank, roundNumber:5, locked: true).save();
+        round = new Round(rank: rank, roundNumber:6, locked: true).save();
+        round = new Round(rank: rank, roundNumber:7, locked: true).save();
+        round = new Round(rank: rank, roundNumber:8, locked: true).save();
+        round = new Round(rank: rank, roundNumber:9, locked: true).save();
+        round = new Round(rank: rank, roundNumber:10, locked: true).save();
+        round = new Round(rank: rank, roundNumber:11).save();
         assert Rank.count() == 1
-        assert Round.count() == 10
+        assert Round.count() == 11
     }
 
     void createScore(){
@@ -161,14 +161,31 @@ class BootStrap {
         match = new Match(startDate: new Date(2015,9,26,16,30), round:  Round.findByRoundNumber(10),
                 firstTeam:  Team.findByName("Анжи"), secondTeam:  Team.findByName("Уфа"),
                 score: Score.findOrSaveByFirstTeamAndSecondTeam(1,1)).save()
+        //Ту11
+        match = new Match(startDate: new Date(2015,10,2,17,0), round:  Round.findByRoundNumber(11),
+                firstTeam:  Team.findByName("Урал"), secondTeam:  Team.findByName("Крылья Советов")).save()
+        match = new Match(startDate: new Date(2015,10,3,14,30), round:  Round.findByRoundNumber(11),
+                firstTeam:  Team.findByName("Мордовия"), secondTeam:  Team.findByName("Спартак")).save()
 
     }
 
     def createForecast(){
+        //Тур10
         def forecast = new Forecast(user: User.findByUsername('pirogov'),
                                     match: Match.findByFirstTeamAndSecondTeam(Team.findByName('Анжи'), Team.findByName("Уфа")),
-                                    score: Score.findByFirstTeamAndSecondTeam(1,1)).save()
-        assert Forecast.count() == 1
+                                    score: Score.findByFirstTeamAndSecondTeam(2,1)).save()
+        forecast = new Forecast(user: User.findByUsername('pirogov'),
+                match: Match.findByFirstTeamAndSecondTeam(Team.findByName('ЦСКА'), Team.findByName("Локомотив")),
+                score: Score.findByFirstTeamAndSecondTeam(1,1)).save()
+        //Тур9
+        forecast = new Forecast(user: User.findByUsername('pirogov'),
+                match: Match.findByFirstTeamAndSecondTeam(Team.findByName('Терек'), Team.findByName("Уфа")),
+                score: Score.findByFirstTeamAndSecondTeam(2,0)).save()
+        forecast = new Forecast(user: User.findByUsername('pirogov'),
+                match: Match.findByFirstTeamAndSecondTeam(Team.findByName('Ростов'), Team.findByName("Анжи")),
+                score: Score.findByFirstTeamAndSecondTeam(2,1)).save()
+
+//        assert Forecast.count() == 4
     }
 
 

@@ -26,9 +26,7 @@
 				<g:if test="${forecastInstance?.user}">
 				<li class="fieldcontain">
 					<span id="user-label" class="property-label"><g:message code="forecast.user.label" default="User" /></span>
-					
-						<span class="property-value" aria-labelledby="user-label"><g:link controller="user" action="show" id="${forecastInstance?.user?.id}">${forecastInstance?.user?.encodeAsHTML()}</g:link></span>
-					
+					<span class="property-value" aria-labelledby="user-label"><g:link controller="user" action="show" id="${forecastInstance?.user?.id}">${forecastInstance?.user?.encodeAsHTML()}</g:link></span>
 				</li>
 				</g:if>
 			

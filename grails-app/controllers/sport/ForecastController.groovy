@@ -15,8 +15,15 @@ class ForecastController {
     }
 
     def create() {
-        respond new Forecast(params)
+        def forecast = new Forecast(params)
+        forecast.user = springSecurityService.currentUser
+        forecast.match = Match.get(params.matchID)
+        respond forecast
     }
+
+//    def create() {
+//        respond new Forecast(params)
+//    }
 
     def show(Forecast forecastInstance) {
         //forecastInstance.user = springSecurityService.currentUser

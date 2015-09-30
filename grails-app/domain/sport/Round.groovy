@@ -3,7 +3,7 @@ package sport
 class Round {
     Rank rank
     Integer roundNumber
-    boolean enabled = true
+    boolean locked = false
 
     static constraints = {
         rank nullable: false

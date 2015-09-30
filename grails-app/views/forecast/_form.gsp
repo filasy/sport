@@ -30,11 +30,11 @@
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: forecastInstance, field: 'locked', 'error')} ">
-	<label for="enabled">
+	<label for="locked">
 		<g:message code="forecast.locked.label" default="Locked" />
-		
+
 	</label>
-	<g:checkBox name="enabled" value="${forecastInstance?.locked}" />
+	<g:checkBox readonly="true" name="locked" value="${forecastInstance?.locked}" />
 
 </div>
 

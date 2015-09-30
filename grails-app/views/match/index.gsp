@@ -56,12 +56,15 @@
 
 						<td>${fieldValue(bean: matchInstance, field: "score")}</td>
 						<td>
-							<g:set var="forecast" value="${matchInstance.forecasts.findAll {it.user == user}}"/>
-							<g:if test="${forecast}">
-								<g:link controller="forecast" action="edit" id="${forecast.id}"> ${forecast[0]}</g:link>
+							<g:set var="forecast" value="${matchInstance.forecasts.find {it.user == user}}"/>
+							<g:if test="${matchInstance?.round?.locked}">
+								${forecast}
 							</g:if>
-							<g:else >
-								<g:link controller="forecast" action="create">Сделать</g:link>
+							<g:elseif test="${forecast}">
+								<g:link controller="forecast" action="edit" id="${forecast.id}" params="[matchID: matchInstance.id]"> ${forecast}</g:link>
+							</g:elseif>
+							<g:else>
+								<g:link controller="forecast" action="create" params="[matchID: matchInstance.id]">Сделать</g:link>
 							</g:else>
 						</td>
 					</tr>
