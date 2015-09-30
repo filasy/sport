@@ -26,12 +26,38 @@ class BootStrap {
     void createUserRole(){
         def adminRole = new Role('ROLE_ADMIN').save()
         def userRole = new Role('ROLE_USER').save()
-        def testUser1 = new User('admin', 'admin').save()
-        UserRole.create(testUser1, adminRole, true)
-        def testUser2 = new User('pirogov', 'pirogov').save()
-        UserRole.create(testUser2, userRole, true)
-        assert User.count() == 2
-        assert Role.count() == 2
+
+        def testUser = new User('admin', 'admin').save()
+        UserRole.create(testUser, adminRole, true)
+
+        testUser = new User('pavel', 'pavel').save()
+        UserRole.create(testUser, userRole, true)
+//
+//        testUser = new User('aleksandr', 'aleksandr').save()
+//        UserRole.create(testUser, userRole, true)
+//
+//        testUser = new User('evgeny', 'evgeny').save()
+//        UserRole.create(testUser, userRole, true)
+//        testUser = new User('mahail', 'mahail').save()
+//        UserRole.create(testUser, userRole, true)
+//        testUser = new User('ekaterina', 'ekaterina').save()
+//        UserRole.create(testUser, userRole, true)
+//        testUser = new User('oleg', 'oleg').save()
+//        UserRole.create(testUser, userRole, true)
+//        testUser = new User('ivan', 'ivan').save()
+//        UserRole.create(testUser, userRole, true)
+//        testUser = new User('pirogov', 'pirogov').save()
+//        UserRole.create(testUser, userRole, true)
+//        testUser = new User('sergey', 'sergey').save()
+//        UserRole.create(testUser, userRole, true)
+//        testUser = new User('daniil', 'daniil').save()
+//        UserRole.create(testUser, userRole, true)
+//        testUser = new User('semen', 'semen').save()
+//        UserRole.create(testUser, userRole, true)
+
+
+//        assert User.count() == 12
+//        assert Role.count() == 12
         assert UserRole.count() == 2
     }
 
