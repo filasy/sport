@@ -32,35 +32,35 @@ class BootStrap {
                 testUser.save()
         UserRole.create(testUser, adminRole, true)
 
-        testUser = new User('pirogov', '123', 'Пирогов').save()
+        testUser = new User('pirogov', '123', 'Евгений П').save()
         UserRole.create(testUser, userRole, true)
-//
-//        testUser = new User('aleksandr', 'aleksandr').save()
-//        UserRole.create(testUser, userRole, true)
-//
-//        testUser = new User('evgeny', 'evgeny').save()
-//        UserRole.create(testUser, userRole, true)
-//        testUser = new User('mahail', 'mahail').save()
-//        UserRole.create(testUser, userRole, true)
-//        testUser = new User('ekaterina', 'ekaterina').save()
-//        UserRole.create(testUser, userRole, true)
-//        testUser = new User('oleg', 'oleg').save()
-//        UserRole.create(testUser, userRole, true)
-//        testUser = new User('ivan', 'ivan').save()
-//        UserRole.create(testUser, userRole, true)
-//        testUser = new User('pirogov', 'pirogov').save()
-//        UserRole.create(testUser, userRole, true)
-//        testUser = new User('sergey', 'sergey').save()
-//        UserRole.create(testUser, userRole, true)
-//        testUser = new User('daniil', 'daniil').save()
-//        UserRole.create(testUser, userRole, true)
-//        testUser = new User('semen', 'semen').save()
-//        UserRole.create(testUser, userRole, true)
+
+        testUser = new User('aleksandr', '123', 'Александр').save()
+        UserRole.create(testUser, userRole, true)
+
+        testUser = new User('evgeny', '123','Евгений К').save()
+        UserRole.create(testUser, userRole, true)
+        testUser = new User('mahail', '123', 'Михаил').save()
+        UserRole.create(testUser, userRole, true)
+        testUser = new User('ekaterina', '123', 'Екатерина').save()
+        UserRole.create(testUser, userRole, true)
+        testUser = new User('oleg', '123', 'Олег').save()
+        UserRole.create(testUser, userRole, true)
+        testUser = new User('ivan', '123', 'Иван').save()
+        UserRole.create(testUser, userRole, true)
+        testUser = new User('pavel', '123', 'Павел').save()
+        UserRole.create(testUser, userRole, true)
+        testUser = new User('sergey', '123', 'Сергей').save()
+        UserRole.create(testUser, userRole, true)
+        testUser = new User('daniil', '123', 'Даниил').save()
+        UserRole.create(testUser, userRole, true)
+        testUser = new User('semen', '123', 'Семен').save()
+        UserRole.create(testUser, userRole, true)
 
 
 //        assert User.count() == 12
 //        assert Role.count() == 12
-        assert UserRole.count() == 2
+//        assert UserRole.count() == 2
     }
 
     void createTeam(){
@@ -94,8 +94,8 @@ class BootStrap {
         round = new Round(rank: rank, roundNumber:6, locked: true).save();
         round = new Round(rank: rank, roundNumber:7, locked: true).save();
         round = new Round(rank: rank, roundNumber:8, locked: true).save();
-        round = new Round(rank: rank, roundNumber:9, locked: true).save();
-        round = new Round(rank: rank, roundNumber:10, locked: true).save();
+        round = new Round(rank: rank, roundNumber:9).save();
+        round = new Round(rank: rank, roundNumber:10).save();
         round = new Round(rank: rank, roundNumber:11).save();
         assert Rank.count() == 1
         assert Round.count() == 11
@@ -194,7 +194,7 @@ class BootStrap {
                 firstTeam:  Team.findByName("Урал"), secondTeam:  Team.findByName("Крылья Советов")).save()
         game = new Game(startDate: new Date(2015,10,3,14,30), round:  Round.findByRoundNumber(11),
                 firstTeam:  Team.findByName("Мордовия"), secondTeam:  Team.findByName("Спартак")).save()
-
+        assert Game.count() == 21
     }
 
     def createForecast(){
@@ -213,7 +213,7 @@ class BootStrap {
                 game: Game.findByFirstTeamAndSecondTeam(Team.findByName('Ростов'), Team.findByName("Анжи")),
                 score: Score.findByFirstTeamAndSecondTeam(2,1)).save()
 
-//        assert Forecast.count() == 4
+        assert Forecast.count() == 4
     }
 
 
