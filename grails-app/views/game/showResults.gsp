@@ -16,22 +16,31 @@
 </div>
 
 <div id="list-game" class="content scaffold-list" role="main">
+    <g:form action="index" class="message">
+        <g:select name="roundID" from="${sport.Round.list()}" optionKey="id" noSelection="['':'-Все туры-']" value="${round?.id}"/>
+        <g:select name="userIDs" from="${sport.secure.User.findAllByActivityChamp(true).sort({it.name})}" optionKey="id" noSelection="['':'-Все участники-']" value="${users?.id}"/>
+        <g:submitButton name="search" value="Применить"/>
+    </g:form>
     <table>
         <thead>
             <tr>
                 <th><g:message code="game.label" default="Матч"/></th>
                 <th><g:message code="game.score.label" default="Факт"/></th>
-                <g:each in="${sport.secure.User.findAllByEnabledAndActivityChamp(true,true)}" status="i" var="userInstance">
-                    <th>${userInstance.name} (${userInstance.getBall()})</th>
+                <g:set var="users" value="${sport.secure.User.findAllByEnabledAndActivityChamp(true,true).sort({it.name})}"/>
+                <g:each in="${users}" status="i" var="user">
+                    <th>${user.name} (${user.getBall()})</th>
                 </g:each>
             </tr>
         </thead>
         <tbody>
             <g:each in="${gameInstanceList}" status="i" var="gameInstance">
-                <g:set var="forecast" value="${gameInstance.forecasts}"></g:set>
+                <g:set var="forecasts" value="${gameInstance.forecasts}"/>
                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
                     <td>${gameInstance}</td>
                     <td>${gameInstance?.score}</td>
+                    <g:each in="${users}" status="j" var="user">
+                        <td>${forecasts.find {it.user.id == user.id}}</td>
+                    </g:each>
                 </tr>
             </g:each>
         </tbody>

@@ -30,7 +30,7 @@
 		<g:layoutBody/>
 	<div class="footer" role="contentinfo">
 		<sec:ifLoggedIn>
-			<g:link controller="logout" action="index">Выход</g:link>
+			<g:link controller="logout" action="index">Выход (<sec:username/>)</g:link>
 		</sec:ifLoggedIn>
 	</div>
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>

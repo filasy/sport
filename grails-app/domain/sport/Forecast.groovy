@@ -2,7 +2,7 @@ package sport
 
 import sport.secure.User
 
-class Forecast {
+class Forecast{
     User user
     Score score
     Date dateCreated
@@ -27,4 +27,5 @@ class Forecast {
     def getBall() {
         return  score.getBall(game?.score)?: 0
     }
+
 }
