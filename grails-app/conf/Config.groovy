@@ -137,15 +137,15 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 
     '/login/**':        ['IS_AUTHENTICATED_ANONYMOUSLY'],
     '/logout/**':       ['IS_AUTHENTICATED_ANONYMOUSLY'],
-    '/match/index':     ['ROLE_ADMIN','ROLE_USER'],
-    '/match/create/**': ['ROLE_ADMIN'],
-    '/match/save/**':   ['ROLE_ADMIN'],
-    '/match/edit/**':   ['ROLE_ADMIN'],
-    '/match/update/**': ['ROLE_ADMIN'],
-    '/match/delete/**': ['ROLE_ADMIN'],
-    '/match/showResults': ['ROLE_ADMIN','ROLE_USER'],
-    '/match/show/**':   ['ROLE_ADMIN','ROLE_USER'],
+//    '/game/index':     ['ROLE_ADMIN','ROLE_USER'],
+//    '/game/create/**': ['ROLE_ADMIN'],
+//    '/game/save/**':   ['ROLE_ADMIN'],
+//    '/game/edit/**':   ['ROLE_ADMIN'],
+//    '/game/update/**': ['ROLE_ADMIN'],
+//    '/game/delete/**': ['ROLE_ADMIN'],
+//    '/game/showResults': ['ROLE_ADMIN','ROLE_USER'],
+//    '/game/show/**':   ['ROLE_ADMIN','ROLE_USER'],
     '/forecast/**':     ['ROLE_ADMIN','ROLE_USER'],
-    //'/**':  ['permitAll']
+    '/**':  ['ROLE_ADMIN','ROLE_USER']
 ]
 

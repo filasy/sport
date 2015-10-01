@@ -3,7 +3,7 @@ package sport
 import org.grails.databinding.BindingFormat
 import sport.secure.User
 
-class Match {
+class Game {
     @BindingFormat('dd:MM:yyyy HH:mm')
     Date startDate
     Round round

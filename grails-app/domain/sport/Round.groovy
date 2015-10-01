@@ -7,7 +7,7 @@ class Round {
     Integer roundNumber
     boolean locked = false
 
-    static hasMany = [matches: Match]
+    static hasMany = [games: Game]
 
     static constraints = {
         rank nullable: false
@@ -25,8 +25,8 @@ class Round {
 
     int getBallForUser(User user){
         def result = 0
-        matches.each {
-            result += Forecast.findByUserAndMatch(user, it)?.getBall()?:0
+        games.each {
+            result += Forecast.findByUserAndGame(user, it)?.getBall()?:0
         }
         return result
     }

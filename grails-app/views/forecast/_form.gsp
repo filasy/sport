@@ -11,12 +11,12 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: forecastInstance, field: 'match', 'error')} required">
-	<label for="match">
-		<g:message code="forecast.match.label" default="Match" />
+<div class="fieldcontain ${hasErrors(bean: forecastInstance, field: 'game', 'error')} required">
+	<label for="game">
+		<g:message code="forecast.game.label" default="Game" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:select id="match" name="match.id" from="${sport.Match.list()}" optionKey="id" required="" value="${forecastInstance?.match?.id}" class="many-to-one"/>
+	<g:select id="game" name="game.id" from="${sport.Game.list()}" optionKey="id" required="" value="${forecastInstance?.game?.id}" class="many-to-one"/>
 
 </div>
 

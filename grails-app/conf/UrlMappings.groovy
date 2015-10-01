@@ -8,8 +8,8 @@ class UrlMappings {
         }
 
 //        "/"(view:"/index")
-        "/"(controller: "Match")
-//        "/showResults"(controller: "Match", action: "showResults")
+        "/"(controller: "Game")
+//        "/showResults"(controller: "Game", action: "showResults")
         "500"(view:'/error')
 	}
 }

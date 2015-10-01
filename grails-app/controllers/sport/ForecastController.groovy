@@ -17,7 +17,7 @@ class ForecastController {
     def create() {
         def forecast = new Forecast(params)
         forecast.user = springSecurityService.currentUser
-        forecast.match = Match.get(params.matchID)
+        forecast.game = Game.get(params.gameID)
         respond forecast
     }
 
@@ -46,7 +46,7 @@ class ForecastController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'forecast.label', default: 'Forecast'), forecastInstance, forecastInstance.match])
+                flash.message = message(code: 'default.created.message', args: [message(code: 'forecast.label', default: 'Forecast'), forecastInstance, forecastInstance.game])
                 redirect forecastInstance
             }
             '*' { respond forecastInstance, [status: CREATED] }
@@ -73,7 +73,7 @@ class ForecastController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'forecast.label', default: 'Forecast'), forecastInstance, forecastInstance.match])
+                flash.message = message(code: 'default.updated.message', args: [message(code: 'forecast.label', default: 'Forecast'), forecastInstance, forecastInstance.game])
                 redirect forecastInstance
             }
             '*'{ respond forecastInstance, [status: OK] }
@@ -93,7 +93,7 @@ class ForecastController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'forecast.label', default: 'Forecast'), forecastInstance, forecastInstance.match])
+                flash.message = message(code: 'default.deleted.message', args: [message(code: 'forecast.label', default: 'Forecast'), forecastInstance, forecastInstance.game])
                 redirect action:"index", method:"GET"
             }
             '*'{ render status: NO_CONTENT }

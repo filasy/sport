@@ -26,7 +26,7 @@
 					
 						<th><g:message code="forecast.user.label" default="User" /></th>
 					
-						<th><g:message code="forecast.match.label" default="Match" /></th>
+						<th><g:message code="forecast.game.label" default="Game" /></th>
 					
 						<th><g:message code="forecast.score.label" default="Score" /></th>
 					
@@ -44,7 +44,7 @@
 					
 						<td><g:link action="show" id="${forecastInstance.id}">${fieldValue(bean: forecastInstance, field: "user")}</g:link></td>
 					
-						<td>${fieldValue(bean: forecastInstance, field: "match")}</td>
+						<td>${fieldValue(bean: forecastInstance, field: "game")}</td>
 					
 						<td>${fieldValue(bean: forecastInstance, field: "score")}</td>
 					

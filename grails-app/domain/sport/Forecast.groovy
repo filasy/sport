@@ -10,13 +10,13 @@ class Forecast {
     boolean locked = false
 
 
-    static belongsTo = [match: Match]
+    static belongsTo = [game: Game]
 
     static constraints = {
         user nullable: false
-        match nullable: false
+        game nullable: false
         score nullable: false
-        match unique: ('user')
+        game unique: ('user')
     }
 
     @Override
@@ -25,6 +25,6 @@ class Forecast {
     }
 
     def getBall() {
-        return  score.getBall(match?.score)?: 0
+        return  score.getBall(game?.score)?: 0
     }
 }

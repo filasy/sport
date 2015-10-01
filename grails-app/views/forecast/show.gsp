@@ -30,11 +30,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${forecastInstance?.match}">
+				<g:if test="${forecastInstance?.game}">
 				<li class="fieldcontain">
-					<span id="match-label" class="property-label"><g:message code="forecast.match.label" default="Match" /></span>
+					<span id="game-label" class="property-label"><g:message code="forecast.game.label" default="Game" /></span>
 					
-						<span class="property-value" aria-labelledby="match-label"><g:link controller="match" action="show" id="${forecastInstance?.match?.id}">${forecastInstance?.match?.encodeAsHTML()}</g:link></span>
+						<span class="property-value" aria-labelledby="game-label"><g:link controller="game" action="show" id="${forecastInstance?.game?.id}">${forecastInstance?.game?.encodeAsHTML()}</g:link></span>
 					
 				</li>
 				</g:if>
