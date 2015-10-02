@@ -85,7 +85,7 @@ class BootStrap {
     }
 
     void createRankAndRound(){
-        def rank = new Rank(name: "РФПЛ 2015-2016").save()
+        def rank = new Rank(name: "2015-2016").save()
         def round = new Round(rank: rank, roundNumber:1, locked: true).save();
         round = new Round(rank: rank, roundNumber:2, locked: true).save();
         round = new Round(rank: rank, roundNumber:3, locked: true).save();

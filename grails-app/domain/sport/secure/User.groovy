@@ -1,6 +1,8 @@
 package sport.secure
 
 import sport.Forecast
+import sport.Game
+import sport.Round
 
 class User implements Serializable {
 
@@ -75,6 +77,9 @@ class User implements Serializable {
 			result += it.getBall()?: 0
 		}
 		return result
+	}
 
+	int getBall(Round round){
+		return round.getBallForUser(this)
 	}
 }

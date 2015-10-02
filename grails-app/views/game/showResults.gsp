@@ -1,4 +1,4 @@
-<%@ page import="sport.Game" %>
+<%@ page import="sport.Round; sport.Rank; sport.Game" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +16,9 @@
 </div>
 
 <div id="list-game" class="content scaffold-list" role="main">
-    <g:form action="index" class="message">
-        <g:select name="roundID" from="${sport.Round.list()}" optionKey="id" noSelection="['':'-Все туры-']" value="${round?.id}"/>
-        <g:select name="userIDs" from="${sport.secure.User.findAllByActivityChamp(true)}" optionKey="id" noSelection="['':'-Все участники-']" value="${users?.id}"/>
+    <g:form action="showResults" class="message">
+        <g:select name="roundID" from="${sport.Round.findAllByLockedAndRank(true, sport.Rank.findByEnabled(true))}" optionKey="id" noSelection="['':'-Все туры-']" value="${selectedRound}"/>
+        <g:select name="userID" from="${sport.secure.User.findAllByEnabledAndActivityChamp(true,true)}" optionKey="id" noSelection="['':'-Все участники-']" value="${selectedUser}"/>
         <g:submitButton name="search" value="Применить"/>
     </g:form>
     <table>
@@ -26,27 +26,37 @@
             <tr>
                 <th><g:message code="game.label" default="Матч"/></th>
                 <th><g:message code="game.score.label" default="Факт"/></th>
-                <g:set var="users" value="${sport.secure.User.findAllByEnabledAndActivityChamp(true,true)}"/>
                 <g:each in="${users}" status="i" var="user">
-                    <th>${user.name} (${user.getBall()})</th>
+                    <th>${user.name}
+                       <g:if test="${selectedRound}">
+                           (${user.getBall(sport.Round.get(selectedRound))})
+                       </g:if><g:else>
+                            (${user.getBall()})
+                        </g:else>
+                    </th>
                 </g:each>
             </tr>
         </thead>
         <tbody>
-            <g:each in="${gameInstanceList}" status="i" var="gameInstance">
-                <g:set var="forecasts" value="${gameInstance.forecasts}"/>
+            <g:each in="${games}" status="i" var="game">
+                <g:set var="forecasts" value="${game.forecasts}"/>
                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                    <td>${gameInstance}</td>
-                    <td>${gameInstance?.score}</td>
+                    <td>${game}</td>
+                    <td>${game?.score}</td>
                     <g:each in="${users}" status="j" var="user">
-                        <td>${forecasts.find {it.user.id == user.id}}</td>
+                        <g:set var="forecast" value="${forecasts?.find {it.user.id == user.id}}"/>
+                        <td>
+                            <g:if test="${forecast}">
+                                ${forecast} (${forecast?.getBall()})
+                            </g:if>
+                        </td>
                     </g:each>
                 </tr>
             </g:each>
         </tbody>
     </table>
     <div class="pagination">
-        <g:paginate total="${gameInstanceCount ?: 0}"/>
+        <g:paginate total="${games ?: 0}"/>
     </div>
 </div>
 

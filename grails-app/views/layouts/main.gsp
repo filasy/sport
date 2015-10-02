@@ -25,7 +25,7 @@
     </div>
     <div id="header">
         <p><g:link class="header-main" uri='/'> РФПЛ</g:link></p>
-        <p class="header-sub">Российская футбольная премьер лига</p>
+        <p class="header-sub">${sport.Rank.findByEnabled(true)}</p>
     </div>
 		<g:layoutBody/>
 	<div class="footer" role="contentinfo">

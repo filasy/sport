@@ -1,5 +1,7 @@
 package sport
 
+import sport.secure.User
+
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
 
@@ -11,7 +13,7 @@ class GameController {
     def springSecurityService
 
     def index(Integer max, Integer roundID) {
-        params.max = Math.min(max ?: 10, 100)
+        params.max = Math.min(max ?: 8, 100)
         params.round = Round.findById(roundID)
         def list, count
         if (params.round){
@@ -25,8 +27,16 @@ class GameController {
     }
 
     def showResults(Integer max){
-        params.max = Math.min(max ?: 10, 100)
-        return [gameInstanceList: Game.list(params), gameInstanceCount: Game.count()]
+        params.max = Math.min(max ?: 8, 100)
+        def round = params.roundID ? Round.findByIdAndLocked(params.roundID, true) : null
+        def users = params.userID ? User.get(params.userID) : User.findAllByEnabledAndActivityChamp(true,true)
+        def games
+        if (round){
+            games = Game.findAllByRound(round)
+        } else {
+            games = Game.list(params)
+        }
+        return [games: games, gameInstanceCount: Game.count(), users: users, selectedUser: params.userID, selectedRound:  params.roundID]
     }
 
     def show(Game gameInstance) {
