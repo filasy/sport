@@ -18,7 +18,7 @@
 <div id="list-game" class="content scaffold-list" role="main">
     <g:form action="index" class="message">
         <g:select name="roundID" from="${sport.Round.list()}" optionKey="id" noSelection="['':'-Все туры-']" value="${round?.id}"/>
-        <g:select name="userIDs" from="${sport.secure.User.findAllByActivityChamp(true).sort({it.name})}" optionKey="id" noSelection="['':'-Все участники-']" value="${users?.id}"/>
+        <g:select name="userIDs" from="${sport.secure.User.findAllByActivityChamp(true)}" optionKey="id" noSelection="['':'-Все участники-']" value="${users?.id}"/>
         <g:submitButton name="search" value="Применить"/>
     </g:form>
     <table>
@@ -26,7 +26,7 @@
             <tr>
                 <th><g:message code="game.label" default="Матч"/></th>
                 <th><g:message code="game.score.label" default="Факт"/></th>
-                <g:set var="users" value="${sport.secure.User.findAllByEnabledAndActivityChamp(true,true).sort({it.name})}"/>
+                <g:set var="users" value="${sport.secure.User.findAllByEnabledAndActivityChamp(true,true)}"/>
                 <g:each in="${users}" status="i" var="user">
                     <th>${user.name} (${user.getBall()})</th>
                 </g:each>

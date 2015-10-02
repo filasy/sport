@@ -68,8 +68,15 @@
 								${forecast}
 							</g:if>
 							<g:elseif test="${forecast}">
-								<div id="message"></div>
-								<g:remoteLink controller="forecast" action="edit" id="${forecast.id}" params="[gameID: gameInstance.id]" update="message"> ${forecast}</g:remoteLink>
+								%{--<p>--}%
+									%{--Случайное число:--}%
+									%{--<input type="text" name="rnd" id="out" value="" readonly="true" />--}%
+									%{--<g:remoteLink action="random"--}%
+												  %{--params="[max:100]"--}%
+												  %{--onSuccess="\$('#out').val(data.rnd);"--}%
+									%{-->Генерировать!</g:remoteLink>--}%
+								%{--</p>--}%
+								<g:link controller="forecast" action="edit" id="${forecast.id}" params="[gameID: gameInstance.id]"> ${forecast}</g:link>
 							</g:elseif>
 							<g:else>
 								<g:link controller="forecast" action="create" params="[gameID: gameInstance.id]">Сделать</g:link>

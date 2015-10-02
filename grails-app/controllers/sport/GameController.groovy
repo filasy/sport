@@ -116,4 +116,10 @@ class GameController {
         }
     }
 
+    def random(){
+        def max = params.int('max')
+        render(contentType:"text/json") {
+            rnd = new Random().nextInt(max)
+        }
+    }
 }

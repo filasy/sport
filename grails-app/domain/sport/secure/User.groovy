@@ -66,6 +66,7 @@ class User implements Serializable {
 
 	static mapping = {
 		password column: '`password`'
+		sort "name"
 	}
 
 	int getBall(){
