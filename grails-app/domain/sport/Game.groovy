@@ -28,7 +28,7 @@ class Game {
 
     @Override
     String toString() {
-        firstTeam.toString() + " - " + secondTeam.toString() + " (" + round.toString() + ")"
+        round.toString() + ". " + firstTeam.toString() + " - " + secondTeam.toString()
     }
 
     int getBallForUser(User user){

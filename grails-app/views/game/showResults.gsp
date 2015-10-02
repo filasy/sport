@@ -28,11 +28,8 @@
                 <th><g:message code="game.score.label" default="Факт"/></th>
                 <g:each in="${users}" status="i" var="user">
                     <th>${user.name}
-                       <g:if test="${selectedRound}">
-                           (${user.getBall(sport.Round.get(selectedRound))})
-                       </g:if><g:else>
-                            (${user.getBall()})
-                        </g:else>
+                       <g:if test="${selectedRound}">(${user.getBall(sport.Round.get(selectedRound))})</g:if>
+                       <g:else>(${user.getBall()})</g:else>
                     </th>
                 </g:each>
             </tr>
@@ -45,19 +42,15 @@
                     <td>${game?.score}</td>
                     <g:each in="${users}" status="j" var="user">
                         <g:set var="forecast" value="${forecasts?.find {it.user.id == user.id}}"/>
-                        <td>
-                            <g:if test="${forecast}">
-                                ${forecast} (${forecast?.getBall()})
-                            </g:if>
-                        </td>
+                        <td><g:if test="${forecast}">${forecast} (${forecast?.getBall()})</g:if></td>
                     </g:each>
                 </tr>
             </g:each>
         </tbody>
     </table>
-    <div class="pagination">
-        <g:paginate total="${games ?: 0}"/>
-    </div>
+    %{--<div class="pagination">--}%
+        %{--<g:paginate total="${countGames ?: 0}"/>--}%
+    %{--</div>--}%
 </div>
 
 </body>

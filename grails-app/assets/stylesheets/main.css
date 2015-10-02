@@ -40,7 +40,7 @@ body {
 	background: #ffffff;
 	color: #333333;
 	margin: 0 auto;
-	max-width: 960px;
+	/*max-width: 960px;*/
 	overflow-x: hidden; /* prevents box-shadow causing a horizontal scrollbar in firefox when viewport < 960px wide */
 	   -moz-box-shadow: 0 0 0.3em #255b17;
 	-webkit-box-shadow: 0 0 0.3em #255b17;
@@ -65,7 +65,7 @@ body {
 }
 
 a:link, a:visited, a:hover {
-	color: #48802c;
+	color: #6776D8;
 }
 
 a:hover, a:active {
@@ -108,7 +108,8 @@ img {
 }
 
 .footer {
-	background: #abbf78;
+	background: #B2BDF2;
+	/*background: #abbf78;*/
 	color: #000;
 	clear: both;
 	font-size: 0.8em;
@@ -477,7 +478,7 @@ th.desc a {
 }
 
 th:hover, tr:hover {
-	background: #E1F2B6;
+	background: #D6DBF2;
 }
 
 /* PAGINATION */
@@ -597,7 +598,8 @@ a.skip {
 }
 
 #header {
-	background: #abbf78;
+	/*background: #abbf78;*/
+	background: #B2BDF2;
 	padding: 1em;
 	/*margin-bottom: 1em;*/
 }

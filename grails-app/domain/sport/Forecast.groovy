@@ -14,9 +14,7 @@ class Forecast{
 
     static constraints = {
         user nullable: false
-        game nullable: false
-        score nullable: false
-        game unique: ('user')
+        game nullable: false, unique: ('user')
     }
 
     @Override
@@ -27,5 +25,4 @@ class Forecast{
     def getBall() {
         return  score.getBall(game?.score)?: 0
     }
-
 }
