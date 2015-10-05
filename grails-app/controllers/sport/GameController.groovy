@@ -30,15 +30,13 @@ class GameController {
 //        params.max = Math.min(max ?: 8, 100)
         def round = params.roundID ? Round.findByIdAndLocked(params.roundID, true) : null
         def users = params.userID ? User.get(params.userID) : User.findAllByEnabledAndActivityChamp(true,true)
-        def games, count
+        def games
         if (round){
             games = Game.findAllByRound(round, params)
-            count = games.size()
         } else {
-            games = Game.list(params)
-            count = Game.count()
+            games = Game.findAllByRoundInList(Round.findAllByLocked(true))
         }
-        return [games: games, countGames: count, users: users, selectedUser: params.userID, selectedRound:  params.roundID]
+        return [games: games, countGames: games.size(), users: users, selectedUser: params.userID, selectedRound:  params.roundID]
     }
 
     def show(Game gameInstance) {
